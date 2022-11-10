@@ -33,6 +33,18 @@ const run = async () => {
             res.send(user)
             console.log(query, user)
         })
+        app.get('/services/:id', async (req, res) => {
+            const id = req.params.id
+            const query = { _id: ObjectId(id) }
+            const updateDoc = {
+                $set: {
+                    isBook: true
+                }
+            }
+            const user = await databaseUsers.updateOne(query, updateDoc)
+            res.send(user)
+            console.log(query, user)
+        })
     }
     finally { }
 }
