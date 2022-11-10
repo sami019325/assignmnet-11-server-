@@ -18,7 +18,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 const run = async () => {
     try {
         const databaseUsers = client.db('tammat').collection('services')
-        app.get('/user', async (req, res) => {
+        app.get('/services', async (req, res) => {
             const quary = {}
             const cursor = databaseUsers.find(quary)
             const user = await cursor.toArray()
