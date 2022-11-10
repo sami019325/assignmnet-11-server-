@@ -6,6 +6,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 
 app.use(cors())
+app.use(express.json())
 app.get('/', (request, response) => {
     response.send('Hello, world')
 });
@@ -33,7 +34,8 @@ const run = async () => {
             res.send(user)
             console.log(query, user)
         })
-        app.get('/services/:id', async (req, res) => {
+        app.post('/services/:id', async (req, res) => {
+            const service = req.body
             const id = req.params.id
             const query = { _id: ObjectId(id) }
             const updateDoc = {
@@ -41,10 +43,28 @@ const run = async () => {
                     isBook: true
                 }
             }
-            const user = await databaseUsers.updateOne(query, updateDoc)
+            const user = await databaseUsers.updateOne(query, service)
             res.send(user)
             console.log(query, user)
         })
+
+
+
+        // ------------------------------------------------------------------
+
+
+        const reviewUser = client.db('tammat').collection('review')
+        app.get('/review', async (req, res) => {
+            const quary = {}
+            const cursor = reviewUser.find(quary)
+            const user = await cursor.toArray()
+            res.send(user)
+        })
+
+
+
+
+
     }
     finally { }
 }
