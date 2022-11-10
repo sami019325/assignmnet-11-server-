@@ -61,7 +61,13 @@ const run = async () => {
             res.send(user)
         })
 
+        app.get('/review/:id', async (req, res) => {
+            const id = req.params.id
+            const query = { _id: ObjectId(id) }
+            const user = await reviewUser.findOne(query)
+            res.send(user)
 
+        })
 
 
 
@@ -108,3 +114,46 @@ https://ibb.co/pRr8Mnd
 https://ibb.co/hVxN5TG
 https://ibb.co/F6Y8d39
 https://ibb.co/XbYjs5V */
+
+
+
+/* 
+
+[
+    {
+        "img": "https://i.ibb.co/gd6fhT3/event.jpg",
+        "title": "Premium Sponsorship",
+        "ratings": "4.5",
+        "isBook": false
+    },
+    {
+        "img": "https://i.ibb.co/p22qkWC/loading2.jpg",
+        "title": "Platinum Sponsorship",
+        "ratings": "4.5",
+        "isBook": false
+    },
+    {
+        "img": "https://i.ibb.co/zGbnckG/champion2.jpg",
+        "title": "Golden Sponsorship ",
+        "ratings": "5",
+        "isBook": false
+    },
+    {
+        "img": "https://i.ibb.co/y0JZwkC/loading5.jpg",
+        "title": "Health & Fitness Guide",
+        "ratings": "4",
+        "isBook": false
+    },
+    {
+        "img": "https://i.ibb.co/jMH6p3S/fast-aid3.jpg",
+        "title": "Tammat's Charity",
+        "ratings": "5",
+        "isBook": false
+    },
+    {
+        "img": "https://i.ibb.co/gg97NKk/loading4.jpg",
+        "title": "Learn Cycling",
+        "ratings": "5",
+        "isBook": false
+    }
+] */
